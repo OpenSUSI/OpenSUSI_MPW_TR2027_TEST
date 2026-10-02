@@ -2,6 +2,7 @@
 # OpenSUSI jun1okamura <jun1okamura@gmail.com>
 # LICENSE: Apache License Version 2.0
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
+import json
 from pathlib import Path
 from typing import Any, Optional
 
@@ -470,6 +471,58 @@ def get_or_load_logo_cell(
 
 
 # ----------------------------
+# System (TEG/FILL) manifest helper
+# ----------------------------
+def load_sibling_manifest(gds_path: Path) -> Optional[dict[str, Any]]:
+    """
+    TEG/FILL sources may now be a normal submission
+    (users/<githubId>/<orderId>/GDSII_MDP.gds + manifest.json), same as any
+    other user -- info.yaml's teg_gds/fill_gds just points at a specific
+    one. If a manifest.json sits next to the configured GDS, load it so the
+    resulting Placement (and therefore project/manifest.json, USERS.md,
+    USERS.svg) carries the real githubId/orderId/sourceRepo/sourceRunId
+    instead of a hardcoded system placeholder. Falls back to None for the
+    legacy flat-file layout (no manifest.json alongside the GDS).
+    """
+    manifest_path = Path(gds_path).parent / "manifest.json"
+
+    if not manifest_path.exists():
+        return None
+
+    return json.loads(manifest_path.read_text(encoding="utf-8"))
+
+
+def build_system_placement_manifest(
+    gds_path: Path,
+    fallback_github_id: str,
+) -> tuple[str, Optional[dict[str, Any]]]:
+    """
+    Resolve (github_id, manifest) for a TEG/FILL placement.
+
+    If gds_path has a sibling manifest.json (the normal submission layout),
+    use its githubId and pass the manifest through for provenance -- except
+    submissionSequence, which WIX assigns per-order but which is meaningless
+    here (TEG/FILL occupy fixed structural tiles, not sequence-driven ones);
+    it is nulled out in the copy handed to make_placement so it doesn't show
+    up in project/manifest.json looking like a real placement sequence. The
+    source manifest.json on disk is left untouched.
+
+    Falls back to (fallback_github_id, None) for the legacy flat-file layout
+    (no manifest.json alongside the GDS).
+    """
+    manifest = load_sibling_manifest(gds_path)
+
+    if manifest is None:
+        return fallback_github_id, None
+
+    placement_manifest = dict(manifest)
+    placement_manifest["submissionSequence"] = None
+
+    github_id = normalize_string(manifest.get("githubId")) or fallback_github_id
+    return github_id, placement_manifest
+
+
+# ----------------------------
 # User GDS helpers
 # ----------------------------
 def read_user_gds_into_layout(layout: pya.Layout, user: UserEntry) -> str:
@@ -666,10 +719,14 @@ def aggregate(config, users, positions, out_gds: Path):
 
         insert_instance(top, teg_cell, x, y, layout.dbu)
 
+        teg_github_id, teg_manifest = build_system_placement_manifest(
+            config.teg_gds, SYSTEM_TEG_DIRNAME
+        )
+
         placements.append(
             make_placement(
                 entry_type="teg",
-                github_id=SYSTEM_TEG_DIRNAME,
+                github_id=teg_github_id,
                 gds_file=config.teg_gds,
                 top_name=top_name,
                 x=x,
@@ -677,6 +734,7 @@ def aggregate(config, users, positions, out_gds: Path):
                 tile_index=tile_index,
                 row=row,
                 col=col,
+                manifest=teg_manifest,
             )
         )
 
@@ -744,6 +802,10 @@ def aggregate(config, users, positions, out_gds: Path):
         if fill_cell is None:
             raise RuntimeError(f"Fill cell not found after read: {config.fill_gds}")
 
+        fill_github_id, fill_manifest = build_system_placement_manifest(
+            config.fill_gds, SYSTEM_FILL_DIRNAME
+        )
+
         for offset in range(remain):
             tile_index, row, col, x, y = positions[fill_start + offset]
             insert_instance(top, fill_cell, x, y, layout.dbu)
@@ -751,11 +813,12 @@ def aggregate(config, users, positions, out_gds: Path):
             placements.append(
                 make_placement(
                     entry_type="fill",
-                    github_id=SYSTEM_FILL_DIRNAME,
+                    github_id=fill_github_id,
                     gds_file=config.fill_gds,
                     top_name=fill_top_name,
                     x=x,
                     y=y,
+                    manifest=fill_manifest,
                     tile_index=tile_index,
                     row=row,
                     col=col,

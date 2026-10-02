@@ -87,11 +87,14 @@ def repo_file_url(
 ) -> str:
     entry_type = entry.get("type", "")
     github_id = entry.get("githubId", "-")
+    order_id = entry.get("orderId")
 
-    if entry_type in {"teg", "fill"}:
+    if entry_type in {"teg", "fill"} and not order_id:
+        # Legacy flat-file layout: no manifest.json / orderId alongside the
+        # GDS, so there's no per-order directory to link to.
         rel = "users/000_system"
     else:
-        order_dir = order_id_to_dir_name(entry.get("orderId"))
+        order_dir = order_id_to_dir_name(order_id)
         rel = f"users/{github_id}/{order_dir}"
 
     return f"https://github.com/{repo_owner}/{repo_name}/blob/{branch}/{rel}"
