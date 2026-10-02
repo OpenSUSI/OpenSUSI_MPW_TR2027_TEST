@@ -1,0 +1,15 @@
+{
+  "orderId": "ORD-261002-WZ9ZP2-01",
+  "submissionSequence": 1,
+  "githubId": "OpenSUSI",
+  "sourceRepo": "OpenSUSI/TR2027_system_TEG",
+  "sourceRunId": "36959885682",
+  "sourceArtifactName": "GDSII_MDP",
+  "sourceCommitSha": "f47ba07019a8380449c4e20310c0271b876033fb",
+  "normalizedRepoName": "OpenSUSI/TR2027_system_TEG",
+  "gdsFile": "GDSII_MDP.gds",
+  "gdsSha256": "d083dd6e31a17354c72f0a2d84fc73afc8a65d25a93f6814ec9aed8bc4fa941d",
+  "gdsTopCell": "ORD_261002_WZ9ZP2_01",
+  "gdsiiDrawingFiles": "tr_1um_000_system_teg.gds",
+  "extractedFiles": "tr_1um_000_system_teg.extracted"
+}

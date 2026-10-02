@@ -1,0 +1,535 @@
+* Created by KLayout
+*** My special header ***
+
+* cell tr_1um_000_system_teg
+* pin G,P1
+* pin G,P14
+* pin G,P15
+* pin GATE,P1
+* pin GATE,P10
+* pin GATE,P10
+* pin GATE,P13
+* pin GATE,P2
+* pin P1
+* pin P1
+* pin P1
+* pin P1
+* pin P1
+* pin P1
+* pin P10
+* pin P10
+* pin P10
+* pin P10
+* pin P10
+* pin P10
+* pin P10
+* pin P11
+* pin P11
+* pin P11
+* pin P11
+* pin P11
+* pin P11
+* pin P11
+* pin P11
+* pin P12
+* pin P12
+* pin P12
+* pin P12
+* pin P12
+* pin P12
+* pin P12
+* pin P12
+* pin P12
+* pin P13
+* pin P13
+* pin P13
+* pin P13
+* pin P13
+* pin P13
+* pin P13
+* pin P13
+* pin P14
+* pin P14
+* pin P14
+* pin P14
+* pin P14
+* pin P14
+* pin P14
+* pin P14
+* pin P15
+* pin P15
+* pin P15
+* pin P15
+* pin P15
+* pin P15
+* pin P15
+* pin P15
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P16
+* pin P2
+* pin P2
+* pin P2
+* pin P2
+* pin P2
+* pin P2
+* pin P2
+* pin P2
+* pin P3
+* pin P3
+* pin P3
+* pin P3
+* pin P3,P4,P5,P7,P8
+* pin P4
+* pin P4
+* pin P4
+* pin P4
+* pin P4
+* pin P4
+* pin P4
+* pin P4
+* pin P5
+* pin P5
+* pin P5
+* pin P5
+* pin P6
+* pin P6
+* pin P6
+* pin P6
+* pin P6
+* pin P6
+* pin P6
+* pin P6
+* pin P6
+* pin P7
+* pin P7
+* pin P7
+* pin P7
+* pin P7,P8
+* pin P8
+* pin P8
+* pin P8
+* pin P8
+* pin P9
+* pin P9
+* pin P9
+* pin P9
+* pin P9
+* pin P9
+* pin P9
+* pin P9
+.SUBCKT tr_1um_000_system_teg G|P1 G|P14 G|P15 GATE|P1 GATE|P10 GATE|P10$1
++ GATE|P13 GATE|P2 P1 P1$1 P1$2 P1$3 P1$4 P1$5 P10 P10$1 P10$2 P10$3 P10$4
++ P10$5 P10$6 P11 P11$1 P11$2 P11$3 P11$4 P11$5 P11$6 P11$7 P12 P12$1 P12$2
++ P12$3 P12$4 P12$5 P12$6 P12$7 P12$8 P13 P13$1 P13$2 P13$3 P13$4 P13$5 P13$6
++ P13$7 P14 P14$1 P14$2 P14$3 P14$4 P14$5 P14$6 P14$7 P15 P15$1 P15$2 P15$3
++ P15$4 P15$5 P15$6 P15$7 P16 P16$1 P16$2 P16$3 P16$4 P16$5 P16$6 P16$7 P16$8
++ P16$9 P2 P2$1 P2$2 P2$3 P2$4 P2$5 P2$6 P2$7 P3 P3$1 P3$2 P3$3 P3|P4|P5|P7|P8
++ P4 P4$1 P4$2 P4$3 P4$4 P4$5 P4$6 P4$7 P5 P5$1 P5$2 P5$3 P6 P6$1 P6$2 P6$3
++ P6$4 P6$5 P6$6 P6$7 P6$8 P7 P7$1 P7$2 P7$3 P7|P8 P8 P8$1 P8$2 P8$3 P9 P9$1
++ P9$2 P9$3 P9$4 P9$5 P9$6 P9$7
+* cell instance $1 r0 *1 550,-920
+X$1 P16$1 GATE|P2 P10 \$7 P3|P4|P5|P7|P8 \$7 OSS_PAD16$10
+* cell instance $2 r0 *1 -550,-920
+X$2 P12 P13 P15 G|P14 P16 P7|P8 P6 P3|P4|P5|P7|P8 OSS_PAD16$9
+* cell instance $4 r0 *1 -550,-460
+X$4 GATE|P13 P12$1 P4 G|P15 P2 G|P1 P16$2 P9$1 GATE|P10$1 P11$1 P6$1 P14
++ P3|P4|P5|P7|P8 OSS_PAD16$7
+* cell instance $5 r0 *1 550,-460
+X$5 P4$1 P14$1 P15$1 P6$2 P5 P3 P2$1 GATE|P1 P11 GATE|P10 P16$3 P9 P12$2 P13$1
++ P8 P7 OSS_PAD16$8
+* cell instance $6 r0 *1 -550,0
+X$6 P12$3 P4$2 P15$2 P2$2 P1 P9$3 P14$2 P11$3 P16$4 P13$2 P10$2 P6$3
++ P3|P4|P5|P7|P8 OSS_PAD16$5
+* cell instance $7 r0 *1 550,0
+X$7 P4$3 P14$3 P15$3 P6$4 P5$1 P3$1 P2$3 P1$1 P16$5 P9$2 P10$1 P11$2 P13$3 P8$1
++ P12$4 P7$1 OSS_PAD16$6
+* cell instance $8 r0 *1 -550,460
+X$8 P4$4 P15$4 P2$4 P1$2 P9$5 P14$4 P11$5 P16$6 P13$4 P6$5 P10$4 P12$5
++ P3|P4|P5|P7|P8 OSS_PAD16$3
+* cell instance $9 r0 *1 550,460
+X$9 P10$3 P9$4 P8$2 P11$4 P14$5 P6$6 P13$5 P7$2 P5$2 P1$3 P15$5 P4$5 P12$6 P3$2
++ P2$5 P16$7 OSS_PAD16$4
+* cell instance $10 r0 *1 -550,920
+X$10 P4$6 P14$6 P15$6 P1$4 P9$6 P11$6 P16$8 P6$7 P13$6 P12$7 P10$5 P2$6
++ P3|P4|P5|P7|P8 OSS_PAD16$1
+* cell instance $11 r0 *1 550,920
+X$11 P4$7 P14$7 P15$7 P5$3 P12$8 P16$9 P3$3 P1$5 P9$7 P6$8 P11$7 P13$7 P8$3
++ P2$7 P10$6 P7$3 OSS_PAD16$2
+.ENDS tr_1um_000_system_teg
+
+* cell OSS_PAD16$10
+* pin P16,VDD
+* pin IN,P2
+* pin OUT,P10
+* pin loop
+* pin P4,gnd
+* pin 
+.SUBCKT OSS_PAD16$10 P16|VDD IN|P2 OUT|P10 loop P4|gnd \$I87
+* cell instance $2 r0 *1 -363.6,-30
+X$2 loop IN|P2 P16|VDD GATE P4|gnd NAND2
+* cell instance $3 r0 *1 -341.8,-31.3
+X$3 P16|VDD \$I89 P4|gnd GATE INV_Chain
+* cell instance $4 r0 *1 354.2,-31.3
+X$4 P16|VDD OUT|P10 P4|gnd \$I88 INV_Chain
+* cell instance $5 r0 *1 330.2,-31.3
+X$5 P16|VDD \$I88 P4|gnd \$I87 INV_Chain
+* cell instance $6 r0 *1 306.2,-31.3
+X$6 P16|VDD \$I87 P4|gnd \$I86 INV_Chain
+* cell instance $7 r0 *1 282.2,-31.3
+X$7 P16|VDD \$I86 P4|gnd \$I85 INV_Chain
+* cell instance $8 r0 *1 258.2,-31.3
+X$8 P16|VDD \$I85 P4|gnd \$I84 INV_Chain
+* cell instance $9 r0 *1 234.2,-31.3
+X$9 P16|VDD \$I84 P4|gnd \$I83 INV_Chain
+* cell instance $10 r0 *1 210.2,-31.3
+X$10 P16|VDD \$I83 P4|gnd \$I82 INV_Chain
+* cell instance $11 r0 *1 186.2,-31.3
+X$11 P16|VDD \$I82 P4|gnd \$I81 INV_Chain
+* cell instance $12 r0 *1 162.2,-31.3
+X$12 P16|VDD \$I81 P4|gnd \$I80 INV_Chain
+* cell instance $13 r0 *1 138.2,-31.3
+X$13 P16|VDD \$I80 P4|gnd \$I79 INV_Chain
+* cell instance $14 r0 *1 114.2,-31.3
+X$14 P16|VDD \$I79 P4|gnd \$I78 INV_Chain
+* cell instance $15 r0 *1 90.2,-31.3
+X$15 P16|VDD \$I78 P4|gnd \$I77 INV_Chain
+* cell instance $16 r0 *1 66.2,-31.3
+X$16 P16|VDD \$I77 P4|gnd \$I76 INV_Chain
+* cell instance $17 r0 *1 42.2,-31.3
+X$17 P16|VDD \$I76 P4|gnd \$I75 INV_Chain
+* cell instance $18 r0 *1 18.2,-31.3
+X$18 P16|VDD \$I75 P4|gnd \$I74 INV_Chain
+* cell instance $19 r0 *1 -5.8,-31.3
+X$19 P16|VDD \$I74 P4|gnd \$I73 INV_Chain
+* cell instance $20 r0 *1 -29.8,-31.3
+X$20 P16|VDD \$I73 P4|gnd \$I72 INV_Chain
+* cell instance $21 r0 *1 -53.8,-31.3
+X$21 P16|VDD \$I72 P4|gnd \$I71 INV_Chain
+* cell instance $22 r0 *1 -77.8,-31.3
+X$22 P16|VDD \$I71 P4|gnd \$I70 INV_Chain
+* cell instance $23 r0 *1 -101.8,-31.3
+X$23 P16|VDD \$I70 P4|gnd \$I69 INV_Chain
+* cell instance $24 r0 *1 -125.8,-31.3
+X$24 P16|VDD \$I69 P4|gnd \$I68 INV_Chain
+* cell instance $25 r0 *1 -149.8,-31.3
+X$25 P16|VDD \$I68 P4|gnd \$I67 INV_Chain
+* cell instance $26 r0 *1 -173.8,-31.3
+X$26 P16|VDD \$I67 P4|gnd \$I66 INV_Chain
+* cell instance $27 r0 *1 -197.8,-31.3
+X$27 P16|VDD \$I66 P4|gnd \$I65 INV_Chain
+* cell instance $28 r0 *1 -221.8,-31.3
+X$28 P16|VDD \$I65 P4|gnd \$I64 INV_Chain
+* cell instance $29 r0 *1 -245.8,-31.3
+X$29 P16|VDD \$I64 P4|gnd \$I63 INV_Chain
+* cell instance $30 r0 *1 -269.8,-31.3
+X$30 P16|VDD \$I63 P4|gnd \$I62 INV_Chain
+* cell instance $31 r0 *1 -293.8,-31.3
+X$31 P16|VDD \$I62 P4|gnd \$I61 INV_Chain
+* cell instance $32 r0 *1 -317.8,-31.3
+X$32 P16|VDD \$I61 P4|gnd \$I89 INV_Chain
+.ENDS OSS_PAD16$10
+
+* cell OSS_PAD16$9
+* pin P12
+* pin P13
+* pin P15
+* pin Gate,P14
+* pin P16
+* pin P7,P8
+* pin P6
+* pin P4,P5
+.SUBCKT OSS_PAD16$9 P12 P13 P15 Gate|P14 P16 P7|P8 P6 P4|P5
+* device instance $1 r0 *1 102.95,-1.55 DP
+D$1 P13 P7|P8 DP A=5080.32p P=2923.2u
+* device instance $12 r0 *1 298.9,-1.55 DP
+D$12 P12 P7|P8 DP A=9797.76p P=396u
+* device instance $16 r0 *1 -149.85,-0.45 DN
+D$16 P4|P5 P15 DN A=9797.76p P=396u
+* device instance $17 r0 *1 -253.45,-0.45 DN
+D$17 P4|P5 P16 DN A=5080.32p P=2923.2u
+* device instance $31 r0 *1 2.7,-1.9 F_CSIO
+XC$31 Gate|P14 P6 P4|P5 F_CSIO C=1.9494e-12 A=3249p P=228u X=57 Y=57 m=1
+.ENDS OSS_PAD16$9
+
+* cell OSS_PAD16$8
+* pin P4
+* pin P14
+* pin G,P15
+* pin P6
+* pin Bulk,P5
+* pin Bulk,P3
+* pin P2
+* pin G,P1
+* pin P11
+* pin G,P10
+* pin P16
+* pin P9
+* pin P12
+* pin G,P13
+* pin P8
+* pin Bulk,P7
+.SUBCKT OSS_PAD16$8 P4 P14 G|P15 P6 Bulk|P5 Bulk|P3 P2 G|P1 P11 G|P10 P16 P9
++ P12 G|P13 P8 Bulk|P7
+* device instance $1 r90 *1 -69.75,-8 PMOS
+XM$1 P14 G|P15 P4 Bulk|P5 PMOS L=30u W=5u AS=14p AD=14p PS=15.6u PD=15.6u
+* device instance $2 r90 *1 333.5,-6.55 PMOS
+XM$2 P11 G|P10 P9 P8 PMOS L=30u W=10u AS=28p AD=28p PS=25.6u PD=25.6u
+* device instance $3 r90 *1 222.4,-8 PMOS
+XM$3 P12 G|P13 P6 Bulk|P7 PMOS L=30u W=7u AS=19.6p AD=19.6p PS=19.6u PD=19.6u
+* device instance $4 r90 *1 -302.25,-8 PMOS
+XM$4 P16 G|P1 P2 Bulk|P3 PMOS L=30u W=3.4u AS=9.52p AD=9.52p PS=12.4u PD=12.4u
+.ENDS OSS_PAD16$8
+
+* cell OSS_PAD16$7
+* pin G,P13
+* pin P12
+* pin P4
+* pin G,P15
+* pin P2
+* pin G,P1
+* pin P16
+* pin P9
+* pin G,P10
+* pin P11
+* pin P6
+* pin P14
+* pin Bulk,P3,P5,P7,P8
+.SUBCKT OSS_PAD16$7 G|P13 P12 P4 G|P15 P2 G|P1 P16 P9 G|P10 P11 P6 P14
++ Bulk|P3|P5|P7|P8
+* device instance $1 r270 *1 333,-7 NMOS
+XM$1 P9 G|P10 P11 Bulk|P3|P5|P7|P8 NMOS L=30u W=10u AS=28p AD=28p PS=25.6u
++ PD=25.6u
+* device instance $2 r90 *1 216.25,-7 NMOS
+XM$2 P12 G|P13 P6 Bulk|P3|P5|P7|P8 NMOS L=30u W=7u AS=19.6p AD=19.6p PS=19.6u
++ PD=19.6u
+* device instance $3 r90 *1 -84.55,-7.95 NMOS
+XM$3 P14 G|P15 P4 Bulk|P3|P5|P7|P8 NMOS L=30u W=5u AS=14p AD=14p PS=15.6u
++ PD=15.6u
+* device instance $4 r90 *1 -302.25,-7.95 NMOS
+XM$4 P16 G|P1 P2 Bulk|P3|P5|P7|P8 NMOS L=30u W=3.4u AS=9.52p AD=9.52p PS=12.4u
++ PD=12.4u
+.ENDS OSS_PAD16$7
+
+* cell OSS_PAD16$6
+* pin P4
+* pin P14
+* pin G,P15
+* pin P6
+* pin Bulk,P5
+* pin Bulk,P3
+* pin P2
+* pin G,P1
+* pin P16
+* pin P9
+* pin G,P10
+* pin P11
+* pin G,P13
+* pin P8
+* pin P12
+* pin Bulk,P7
+.SUBCKT OSS_PAD16$6 P4 P14 G|P15 P6 Bulk|P5 Bulk|P3 P2 G|P1 P16 P9 G|P10 P11
++ G|P13 P8 P12 Bulk|P7
+* device instance $1 r90 *1 -69.75,-8 PMOS
+XM$1 P14 G|P15 P4 Bulk|P5 PMOS L=10u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+* device instance $2 r90 *1 333.5,-6.55 PMOS
+XM$2 P11 G|P10 P9 P8 PMOS L=30u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+* device instance $3 r90 *1 222.4,-8 PMOS
+XM$3 P12 G|P13 P6 Bulk|P7 PMOS L=20u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+* device instance $4 r90 *1 -302.25,-8 PMOS
+XM$4 P16 G|P1 P2 Bulk|P3 PMOS L=7u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+.ENDS OSS_PAD16$6
+
+* cell OSS_PAD16$5
+* pin P12
+* pin P4
+* pin G,P15
+* pin P2
+* pin G,P1
+* pin P9
+* pin P14
+* pin P11
+* pin P16
+* pin G,P13
+* pin G,P10
+* pin P6
+* pin Bulk,P3,P5,P7,P8
+.SUBCKT OSS_PAD16$5 P12 P4 G|P15 P2 G|P1 P9 P14 P11 P16 G|P13 G|P10 P6
++ Bulk|P3|P5|P7|P8
+* device instance $1 r270 *1 333,-7 NMOS
+XM$1 P9 G|P10 P11 Bulk|P3|P5|P7|P8 NMOS L=30u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+* device instance $2 r90 *1 216.25,-7.95 NMOS
+XM$2 P12 G|P13 P6 Bulk|P3|P5|P7|P8 NMOS L=20u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+* device instance $3 r90 *1 -84.55,-7.95 NMOS
+XM$3 P14 G|P15 P4 Bulk|P3|P5|P7|P8 NMOS L=10u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+* device instance $4 r90 *1 -302.25,-7.95 NMOS
+XM$4 P16 G|P1 P2 Bulk|P3|P5|P7|P8 NMOS L=7u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+.ENDS OSS_PAD16$5
+
+* cell OSS_PAD16$4
+* pin G,P10
+* pin P9
+* pin P8
+* pin P11
+* pin P14
+* pin Bulk,P6
+* pin G,P13
+* pin Bulk,P7
+* pin P5
+* pin G,P1
+* pin G,P15
+* pin Bulk,P4
+* pin P12
+* pin P3
+* pin Bulk,P2
+* pin P16
+.SUBCKT OSS_PAD16$4 G|P10 P9 P8 P11 P14 Bulk|P6 G|P13 Bulk|P7 P5 G|P1 G|P15
++ Bulk|P4 P12 P3 Bulk|P2 P16
+* device instance $1 r90 *1 -69.75,-8 PMOS
+XM$1 P14 G|P15 Bulk|P4 P5 PMOS L=2u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+* device instance $2 r90 *1 333.5,-6.55 PMOS
+XM$2 P11 G|P10 P9 P8 PMOS L=5u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+* device instance $3 r90 *1 222.4,-8 PMOS
+XM$3 P12 G|P13 Bulk|P6 Bulk|P7 PMOS L=3u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+* device instance $4 r90 *1 -302.25,-8 PMOS
+XM$4 P16 G|P1 Bulk|P2 P3 PMOS L=1u W=30u AS=84p AD=84p PS=65.6u PD=65.6u
+.ENDS OSS_PAD16$4
+
+* cell OSS_PAD16$2
+* pin P4
+* pin P14
+* pin G,P15
+* pin Bulk,P5
+* pin P12
+* pin P16
+* pin Bulk,P3
+* pin G,P1
+* pin P9
+* pin P6
+* pin P11
+* pin G,P13
+* pin P8
+* pin P2
+* pin G,P10
+* pin Bulk,P7
+.SUBCKT OSS_PAD16$2 P4 P14 G|P15 Bulk|P5 P12 P16 Bulk|P3 G|P1 P9 P6 P11 G|P13
++ P8 P2 G|P10 Bulk|P7
+* device instance $1 r90 *1 332.95,-7 PMOS
+XM$1 P11 G|P10 P9 P8 PMOS L=30u W=50u AS=140p AD=140p PS=105.6u PD=105.6u
+* device instance $2 r90 *1 216.25,-7.9 PMOS
+XM$2 P12 G|P13 P6 Bulk|P7 PMOS L=4u W=3.4u AS=9.52p AD=9.52p PS=12.4u PD=12.4u
+* device instance $3 r90 *1 -84.55,-8 PMOS
+XM$3 P14 G|P15 P4 Bulk|P5 PMOS L=2u W=3.4u AS=9.52p AD=9.52p PS=12.4u PD=12.4u
+* device instance $4 r90 *1 -302.25,-8 PMOS
+XM$4 P16 G|P1 P2 Bulk|P3 PMOS L=1u W=3.4u AS=9.52p AD=9.52p PS=12.4u PD=12.4u
+.ENDS OSS_PAD16$2
+
+* cell OSS_PAD16$3
+* pin Bulk,P4
+* pin G,P15
+* pin P2
+* pin G,P1
+* pin P9
+* pin P14
+* pin P11
+* pin P16
+* pin G,P13
+* pin P6
+* pin G,P10
+* pin P12
+* pin Bulk,P3,P5,P7,P8
+.SUBCKT OSS_PAD16$3 Bulk|P4 G|P15 P2 G|P1 P9 P14 P11 P16 G|P13 P6 G|P10 P12
++ Bulk|P3|P5|P7|P8
+* device instance $1 r270 *1 333,-7 NMOS
+XM$1 P9 G|P10 P11 Bulk|P3|P5|P7|P8 NMOS L=5u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+* device instance $2 r90 *1 216.25,-7.95 NMOS
+XM$2 P12 G|P13 P6 Bulk|P3|P5|P7|P8 NMOS L=3u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+* device instance $3 r90 *1 -84.55,-7.95 NMOS
+XM$3 P14 G|P15 Bulk|P4 Bulk|P3|P5|P7|P8 NMOS L=2u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+* device instance $4 r90 *1 -302.25,-7.95 NMOS
+XM$4 P16 G|P1 P2 Bulk|P3|P5|P7|P8 NMOS L=1u W=30u AS=84p AD=84p PS=65.6u
++ PD=65.6u
+.ENDS OSS_PAD16$3
+
+* cell OSS_PAD16$1
+* pin P4
+* pin P14
+* pin G,P15
+* pin G,P1
+* pin P9
+* pin P11
+* pin P16
+* pin P6
+* pin G,P13
+* pin P12
+* pin G,P10
+* pin P2
+* pin Bulk,P3,P5,P7,P8
+.SUBCKT OSS_PAD16$1 P4 P14 G|P15 G|P1 P9 P11 P16 P6 G|P13 P12 G|P10 P2
++ Bulk|P3|P5|P7|P8
+* device instance $1 r270 *1 333,-7 NMOS
+XM$1 P9 G|P10 P11 Bulk|P3|P5|P7|P8 NMOS L=30u W=50u AS=140p AD=140p PS=105.6u
++ PD=105.6u
+* device instance $2 r90 *1 216.25,-7.95 NMOS
+XM$2 P12 G|P13 P6 Bulk|P3|P5|P7|P8 NMOS L=4u W=3.4u AS=9.52p AD=9.52p PS=12.4u
++ PD=12.4u
+* device instance $3 r90 *1 -84.55,-7.95 NMOS
+XM$3 P14 G|P15 P4 Bulk|P3|P5|P7|P8 NMOS L=2u W=3.4u AS=9.52p AD=9.52p PS=12.4u
++ PD=12.4u
+* device instance $4 r90 *1 -302.25,-7.95 NMOS
+XM$4 P16 G|P1 P2 Bulk|P3|P5|P7|P8 NMOS L=1u W=3.4u AS=9.52p AD=9.52p PS=12.4u
++ PD=12.4u
+.ENDS OSS_PAD16$1
+
+* cell INV_Chain
+* pin 
+* pin 
+* pin VSS
+* pin 
+.SUBCKT INV_Chain \$1 \$2 VSS \$I1
+* cell instance $1 r0 *1 6.3,1.3
+X$1 \$1 \$I1 \$2 VSS INV_X1$1
+.ENDS INV_Chain
+
+* cell NAND2
+* pin A
+* pin B
+* pin vdd
+* pin Y
+* pin gnd
+.SUBCKT NAND2 A B vdd Y gnd
+* device instance $1 r0 *1 6.1,44.8 PMOS
+XM$1 Y A vdd vdd PMOS L=1u W=10.2u AS=28.56p AD=15.3p PS=26u PD=13.2u
+* device instance $2 r0 *1 10.1,44.8 PMOS
+XM$2 vdd B Y vdd PMOS L=1u W=10.2u AS=15.3p AD=28.56p PS=13.2u PD=26u
+* device instance $3 r0 *1 6.1,6.8 NMOS
+XM$3 \$5 A gnd gnd NMOS L=1u W=3.4u AS=9.52p AD=5.1p PS=12.4u PD=6.4u
+* device instance $4 r0 *1 10.1,6.8 NMOS
+XM$4 Y B \$5 gnd NMOS L=1u W=3.4u AS=5.1p AD=9.52p PS=6.4u PD=12.4u
+.ENDS NAND2
+
+* cell INV_X1$1
+* pin vdd
+* pin A
+* pin Y
+* pin gnd
+.SUBCKT INV_X1$1 vdd A Y gnd
+* device instance $1 r0 *1 6.1,44.8 PMOS
+XM$1 Y A vdd vdd PMOS L=1u W=10.2u AS=28.56p AD=28.56p PS=26u PD=26u
+* device instance $2 r0 *1 6.1,6.8 NMOS
+XM$2 Y A gnd gnd NMOS L=1u W=3.4u AS=9.52p AD=9.52p PS=12.4u PD=12.4u
+.ENDS INV_X1$1
