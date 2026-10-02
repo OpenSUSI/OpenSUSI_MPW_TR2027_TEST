@@ -28,21 +28,21 @@
       "sourceArtifactName": "GDSII_MDP"
     },
     {
-      "type": "fill",
-      "githubId": "OpenSUSI",
-      "gdsFile": "users/OpenSUSI/ORD-261002-EEJMYQ-01/GDSII_MDP.gds",
-      "gdsTopCell": "ORD_261002_EEJMYQ_01",
+      "type": "user",
+      "githubId": "dryrun-test",
+      "gdsFile": "users/dryrun-test/SEQ-064/GDSII_MDP.gds",
+      "gdsTopCell": "SEQ_064",
       "x": -6250.0,
       "y": 8750.0,
       "tileIndex": 1,
       "row": 0,
       "col": 1,
-      "submissionSequence": null,
-      "normalizedRepoName": "OpenSUSI/TR2027_system_FILL",
-      "orderId": "ORD-261002-EEJMYQ-01",
-      "sourceRepo": "OpenSUSI/TR2027_system_FILL",
-      "sourceRunId": "36960160760",
-      "sourceArtifactName": "GDSII_MDP"
+      "submissionSequence": 64,
+      "normalizedRepoName": "dryrun-test/fake",
+      "orderId": "SEQ-064",
+      "sourceRepo": "dryrun-test/fake",
+      "sourceRunId": "0",
+      "sourceArtifactName": "manual-test"
     },
     {
       "type": "fill",
