@@ -59,8 +59,10 @@ def build_manifest(args: argparse.Namespace) -> dict:
         "sourceRepo": normalized_repo,
         "sourceRunId": normalize_string(args.source_run_id),
         "sourceArtifactName": normalize_string(args.source_artifact_name),
+        "sourceCommitSha": normalize_string(args.source_commit_sha),
         "normalizedRepoName": normalized_repo,
         "gdsFile": normalize_string(args.gds_file),
+        "gdsSha256": normalize_string(args.gds_sha256).lower(),
         "gdsTopCell": gds_top_cell,
         "gdsiiDrawingFiles": normalize_string(args.gdsii_drawing_files),
         "extractedFiles": normalize_string(args.extracted_files),
@@ -75,8 +77,10 @@ def validate_manifest(manifest: dict) -> None:
         "sourceRepo",
         "sourceRunId",
         "sourceArtifactName",
+        "sourceCommitSha",
         "normalizedRepoName",
         "gdsFile",
+        "gdsSha256",
         "gdsTopCell",
     ]
 
@@ -101,6 +105,16 @@ def validate_manifest(manifest: dict) -> None:
     if submission_sequence <= 0:
         raise ValueError(
             f"submissionSequence must be positive: {submission_sequence}"
+        )
+
+    if not re.fullmatch(r"[0-9a-f]{64}", manifest["gdsSha256"]):
+        raise ValueError(
+            f"gdsSha256 must be a 64-char lowercase hex sha256 digest: {manifest['gdsSha256']!r}"
+        )
+
+    if not re.fullmatch(r"[0-9a-f]{40}", manifest["sourceCommitSha"]):
+        raise ValueError(
+            f"sourceCommitSha must be a 40-char lowercase hex commit SHA: {manifest['sourceCommitSha']!r}"
         )
 
 
@@ -147,9 +161,21 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "--source-commit-sha",
+        required=True,
+        help="Commit SHA (full 40-char hex) of the source repo run that produced the artifact.",
+    )
+
+    parser.add_argument(
         "--gds-file",
         default=DEFAULT_GDS_FILENAME,
         help="Imported GDS file name. Default: GDSII_MDP.gds",
+    )
+
+    parser.add_argument(
+        "--gds-sha256",
+        required=True,
+        help="SHA-256 digest (hex) of the final, renamed GDSII_MDP.gds file.",
     )
 
     parser.add_argument(

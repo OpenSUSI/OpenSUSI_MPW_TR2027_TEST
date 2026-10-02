@@ -127,6 +127,30 @@ jobs:
               -o "work/${NAME}.zip"
           done
 
+      - name: Get source commit SHA
+        id: source_commit
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          SOURCE_REPO: ${{ inputs.source_repo }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+        run: |
+          set -euo pipefail
+
+          curl -fsSL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${SOURCE_REPO}/actions/runs/${SOURCE_RUN_ID}" \
+            -o work/run.json
+
+          SHA=$(python3 -c "import json; print(json.load(open('work/run.json'))['head_sha'])")
+
+          if [ -z "${SHA}" ] || [ "${SHA}" = "None" ]; then
+            echo "Could not resolve head_sha for run ${SOURCE_RUN_ID}"
+            exit 1
+          fi
+
+          echo "sha=${SHA}" >> "$GITHUB_OUTPUT"
+
       - name: Extract submission files
         id: extract
         env:
@@ -180,6 +204,14 @@ jobs:
             --gds "${{ steps.vars.outputs.target_dir }}/GDSII_MDP.gds" \
             --order-id "${{ inputs.order_id }}"
 
+      - name: Compute GDS shasum
+        id: gds_hash
+        run: |
+          set -euo pipefail
+
+          SHA=$(sha256sum "${{ steps.vars.outputs.target_dir }}/GDSII_MDP.gds" | awk '{print $1}')
+          echo "sha256=${SHA}" >> "$GITHUB_OUTPUT"
+
       - name: Write manifest
         run: |
           set -euo pipefail
@@ -189,8 +221,10 @@ jobs:
             --github-id "${{ inputs.github_id }}" \
             --source-repo "${{ inputs.source_repo }}" \
             --source-run-id "${{ inputs.source_run_id }}" \
+            --source-commit-sha "${{ steps.source_commit.outputs.sha }}" \
             --source-artifact-name "${{ inputs.source_artifact_name }}" \
             --submission-sequence "${{ inputs.submission_sequence }}" \
+            --gds-sha256 "${{ steps.gds_hash.outputs.sha256 }}" \
             --gdsii-drawing-files "${{ steps.extract.outputs.drawing_files }}" \
             --extracted-files "${{ steps.extract.outputs.extracted_files }}" \
             --output "${{ steps.vars.outputs.target_dir }}/manifest.json"
@@ -204,6 +238,7 @@ jobs:
 
           TARGET_DIR="${{ steps.vars.outputs.target_dir }}"
           SOURCE_ARTIFACT_NAME="${{ inputs.source_artifact_name }}"
+          SOURCE_COMMIT_SHA="${{ steps.source_commit.outputs.sha }}"
           COMMIT_MSG="Import ${{ inputs.github_id }} (${{ inputs.order_id }})"
 
           stage_outputs() {
@@ -238,13 +273,17 @@ jobs:
               --gds "${TARGET_DIR}/GDSII_MDP.gds" \
               --order-id "${{ inputs.order_id }}"
 
+            GDS_SHA256=$(sha256sum "${TARGET_DIR}/GDSII_MDP.gds" | awk '{print $1}')
+
             python3 scripts/write_import_manifest.py \
               --order-id "${{ inputs.order_id }}" \
               --github-id "${{ inputs.github_id }}" \
               --source-repo "${{ inputs.source_repo }}" \
               --source-run-id "${{ inputs.source_run_id }}" \
+              --source-commit-sha "${SOURCE_COMMIT_SHA}" \
               --source-artifact-name "${{ inputs.source_artifact_name }}" \
               --submission-sequence "${{ inputs.submission_sequence }}" \
+              --gds-sha256 "${GDS_SHA256}" \
               --gdsii-drawing-files "${DRAWING_FILES}" \
               --extracted-files "${EXTRACTED_FILES}" \
               --output "${TARGET_DIR}/manifest.json"
