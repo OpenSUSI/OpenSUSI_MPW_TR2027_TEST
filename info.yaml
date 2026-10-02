@@ -5,6 +5,14 @@
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # OpenSUSI TR-1um MPW project information
 
+# dryRun: true  -> reticle doesn't need to fill up; once submissions exceed
+#                  grid capacity, placement wraps back around to the first
+#                  user tile (oldest dry-run submissions get silently
+#                  superseded). For testing the pipeline repeatedly.
+# dryRun: false -> production behavior: placement fills through the last
+#                  tile and stops (errors) once the grid is full.
+dryRun: true
+
 # ----------------------------
 # Aggregate configuration
 # ----------------------------

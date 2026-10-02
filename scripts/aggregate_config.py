@@ -34,6 +34,7 @@ class AggregateConfig:
     xy_text_gds: Path
 
     logo_map_path: Path
+    dry_run: bool
 
 
 def require_section(data: dict, key: str) -> dict:
@@ -152,6 +153,14 @@ def load_config(path: Path) -> AggregateConfig:
         str(data.get("logo_map", "logo_map.yaml")).strip() or "logo_map.yaml"
     )
 
+    # dryRun: True means the reticle doesn't need to fill up for the run to
+    # be useful (test/debug submissions) -- once submissions would exceed
+    # the grid capacity, placement wraps back around to the first user tile
+    # instead of erroring out. False (default) is production behavior:
+    # placement stops/fails once the grid is full (fills through the last
+    # tile and no further).
+    dry_run = bool(data.get("dryRun", False))
+
     return AggregateConfig(
         top_cell=top_cell,
         pitch_x=pitch_x,
@@ -173,4 +182,5 @@ def load_config(path: Path) -> AggregateConfig:
         xy_line_pitch=xy_line_pitch,
         xy_text_gds=xy_text_gds,
         logo_map_path=logo_map_path,
+        dry_run=dry_run,
     )

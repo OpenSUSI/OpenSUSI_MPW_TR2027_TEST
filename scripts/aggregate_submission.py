@@ -93,6 +93,54 @@ def sort_users_by_submission_sequence(users):
     return sorted(users, key=lambda user: user.submission_sequence)
 
 
+def remap_for_dry_run(users, max_user_tiles: int):
+    """
+    dryRun: True -- the reticle doesn't need to fill up, so once raw
+    submissionSequence values would exceed the grid's user-tile capacity,
+    wrap back around to the first user tile (submissionSequence=1) instead
+    of erroring. If wrapping makes two submissions land on the same
+    effective tile, the one with the larger (more recent) raw sequence wins
+    -- the earlier one is silently superseded, as if it had been
+    overwritten by a later dry-run test.
+    """
+    if max_user_tiles <= 0:
+        raise RuntimeError(
+            f"No tile slots available for users: grid capacity={max_user_tiles}"
+        )
+
+    best_raw_by_slot: dict[int, int] = {}
+    best_user_by_slot: dict[int, object] = {}
+
+    for user in users:
+        raw_seq = int(user.submission_sequence)
+
+        if raw_seq <= 0:
+            raise RuntimeError(
+                f"Invalid submissionSequence: {raw_seq}, order={user.manifest.get('orderId')}, "
+                f"path={user.manifest_path}"
+            )
+
+        effective_seq = ((raw_seq - 1) % max_user_tiles) + 1
+
+        if effective_seq not in best_raw_by_slot or raw_seq > best_raw_by_slot[effective_seq]:
+            if effective_seq in best_user_by_slot:
+                superseded = best_user_by_slot[effective_seq]
+                print(
+                    f"dryRun: tile slot {effective_seq} reassigned from "
+                    f"{superseded.manifest.get('orderId')} (seq={best_raw_by_slot[effective_seq]}) "
+                    f"to {user.manifest.get('orderId')} (seq={raw_seq})"
+                )
+            best_raw_by_slot[effective_seq] = raw_seq
+            best_user_by_slot[effective_seq] = user
+
+    remapped = []
+    for effective_seq, user in best_user_by_slot.items():
+        user.submission_sequence = effective_seq
+        remapped.append(user)
+
+    return remapped
+
+
 def main() -> None:
     args = parse_args()
 
@@ -103,7 +151,13 @@ def main() -> None:
     users = collect_users(args.users_dir)
 
     max_tiles = config.grid_x * config.grid_y
-    validate_submission_sequences(users, max_tiles)
+
+    if config.dry_run:
+        max_user_tiles = max_tiles - (1 if config.teg_gds else 0)
+        users = remap_for_dry_run(users, max_user_tiles)
+    else:
+        validate_submission_sequences(users, max_tiles)
+
     ordered_users = sort_users_by_submission_sequence(users)
 
     positions = build_positions(
@@ -132,6 +186,7 @@ def main() -> None:
     print(f"users dir   : {args.users_dir}")
     print(f"output GDS  : {args.output_gds}")
     print(f"manifest    : {args.output_manifest}")
+    print(f"dry_run     : {config.dry_run}")
     print(f"user count  : {len(ordered_users)}")
     print(f"placements  : {len(placements)}")
 
