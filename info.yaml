@@ -19,13 +19,13 @@ aggregate:
     x: 8
     y: 8
 
-  # Submitted via the same opensusi.org form / import-submission.yml as
-  # regular users, stored with the exact same users/<githubId>/<orderId>
-  # layout (no extra teg/fill subfolder). TEG vs FILL is distinguished by
-  # which dedicated repo produced the Actions run pasted into the form --
-  # import-submission.yml only allows writing to users/OpenSUSI/2027TEG_system
-  # when source_repo is OpenSUSI/2027TEG_system (and likewise for FILL) --
-  # rather than trusting a client-suppliable field.
+  # Submitted via the exact same opensusi.org form / import-submission.yml
+  # pipeline as any regular user -- no special-casing in the workflow.
+  # githubId=OpenSUSI lands at users/OpenSUSI/<orderId>/GDSII_MDP.gds like
+  # anyone else (and is excluded from grid placement via aggregate_scan.py's
+  # SYSTEM_DIRS). Which orderId is the *current* TEG / FILL source is decided
+  # here, not by the workflow: after a new TEG or FILL submission is
+  # confirmed good, an admin updates the path below to point at it.
   teg_gds:  users/OpenSUSI/2027TEG_system/GDSII_MDP.gds
   fill_gds: users/OpenSUSI/2027FILL_system/GDSII_MDP.gds
 
