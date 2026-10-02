@@ -8,7 +8,12 @@ from typing import Any
 import json
 
 
-SYSTEM_DIRS = {"000_system"}
+# "000_system": legacy flat location (users/000_system/...).
+# "OpenSUSI": reserved githubId used to submit TEG/FILL via the normal
+# opensusi.org form (users/OpenSUSI/000_system/{teg,fill}/...), guarded in
+# import-submission.yml by source_repo == OpenSUSI/000_system. Neither is a
+# per-tile user submission, so both are excluded from the scan.
+SYSTEM_DIRS = {"000_system", "OpenSUSI"}
 USER_GDS_FILENAME = "GDSII_MDP.gds"
 USER_MANIFEST_FILENAME = "manifest.json"
 
