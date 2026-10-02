@@ -19,9 +19,15 @@ aggregate:
     x: 8
     y: 8
 
-  teg_gds:  users/000_system/IP62_wladek60.gds
-  # teg_gds:  users/000_system/GDSII_TEG.gds
-  fill_gds: users/000_system/GDSII_FILL.gds
+  # Submitted via the same opensusi.org form / import-submission.yml as
+  # regular users, stored with the exact same users/<githubId>/<orderId>
+  # layout (no extra teg/fill subfolder). TEG vs FILL is distinguished by
+  # which dedicated repo produced the Actions run pasted into the form --
+  # import-submission.yml only allows writing to users/OpenSUSI/2027TEG_system
+  # when source_repo is OpenSUSI/2027TEG_system (and likewise for FILL) --
+  # rather than trusting a client-suppliable field.
+  teg_gds:  users/OpenSUSI/2027TEG_system/GDSII_MDP.gds
+  fill_gds: users/OpenSUSI/2027FILL_system/GDSII_MDP.gds
 
 # ----------------------------
 # Logo configuration

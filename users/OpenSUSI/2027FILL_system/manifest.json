@@ -1,0 +1,15 @@
+{
+  "orderId": "2027FILL_system",
+  "submissionSequence": 1,
+  "githubId": "OpenSUSI",
+  "sourceRepo": "OpenSUSI/2027FILL_system",
+  "sourceRunId": "0",
+  "sourceArtifactName": "manual-seed",
+  "sourceCommitSha": "459a889bb075399994ab1a52ff87ef2b4318a2cb",
+  "normalizedRepoName": "OpenSUSI/2027FILL_system",
+  "gdsFile": "GDSII_MDP.gds",
+  "gdsSha256": "a9d59c2e952e6fa45f1e59154aa72ee5ea8269cee4e59bc765612ecba193ca4c",
+  "gdsTopCell": "tr_1um_000_system",
+  "gdsiiDrawingFiles": "",
+  "extractedFiles": ""
+}

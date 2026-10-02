@@ -80,6 +80,45 @@ jobs:
 
           echo "target_dir=${TARGET_DIR}" >> "$GITHUB_OUTPUT"
 
+      - name: Guard system targets
+        env:
+          SOURCE_REPO: ${{ inputs.source_repo }}
+          TARGET_DIR: ${{ steps.vars.outputs.target_dir }}
+        run: |
+          set -euo pipefail
+
+          # users/OpenSUSI/2027TEG_system and users/OpenSUSI/2027FILL_system
+          # are shared infrastructure (TEG/FILL), not per-user tiles, but are
+          # stored with the exact same users/<githubId>/<orderId> layout as
+          # any other submission. The WIX form only lets a submitter control
+          # orderId/coupon and the pasted Actions run URL -- it cannot set an
+          # arbitrary githubId -- so the trust anchor here is source_repo
+          # (parsed from that URL): each target_dir may only be written by a
+          # run from its own dedicated repo, which only OpenSUSI org admins
+          # can push to/run.
+          NORMALIZED_SOURCE_REPO=$(echo "${SOURCE_REPO}" | sed -E 's#^https?://github\.com/##I; s#^github\.com/##I; s#/+$##')
+
+          case "${TARGET_DIR}" in
+            users/OpenSUSI/2027TEG_system)
+              REQUIRED_SOURCE_REPO="OpenSUSI/2027TEG_system"
+              ;;
+            users/OpenSUSI/2027FILL_system)
+              REQUIRED_SOURCE_REPO="OpenSUSI/2027FILL_system"
+              ;;
+            users/OpenSUSI/*)
+              echo "Refusing: unknown OpenSUSI target_dir '${TARGET_DIR}'"
+              exit 1
+              ;;
+            *)
+              REQUIRED_SOURCE_REPO=""
+              ;;
+          esac
+
+          if [ -n "${REQUIRED_SOURCE_REPO:-}" ] && [ "${NORMALIZED_SOURCE_REPO}" != "${REQUIRED_SOURCE_REPO}" ]; then
+            echo "Refusing: target_dir '${TARGET_DIR}' requires source_repo=${REQUIRED_SOURCE_REPO}, got '${NORMALIZED_SOURCE_REPO}'"
+            exit 1
+          fi
+
       - name: Download artifacts
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
