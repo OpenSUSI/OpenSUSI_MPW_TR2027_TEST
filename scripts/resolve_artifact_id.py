@@ -18,11 +18,25 @@ def load_json(path: Path) -> dict:
 
 
 def find_artifact_id(data: dict, name: str) -> Optional[int]:
+    # GitHub's list-artifacts API still includes expired artifacts; trying to
+    # download one returns a bare 404 from the zip endpoint. Treat an expired
+    # match as "not found" so callers (including --allow-missing) behave the
+    # same as if the artifact never existed, instead of failing with a
+    # confusing curl 404 downstream.
     for artifact in data.get("artifacts", []):
-        if artifact.get("name") == name:
+        if artifact.get("name") == name and not artifact.get("expired"):
             return artifact.get("id")
 
     return None
+
+
+def find_artifact_status(data: dict, name: str) -> str:
+    """Return 'missing', 'expired', or 'ok' for diagnostics."""
+    for artifact in data.get("artifacts", []):
+        if artifact.get("name") == name:
+            return "expired" if artifact.get("expired") else "ok"
+
+    return "missing"
 
 
 def parse_args() -> argparse.Namespace:
@@ -47,6 +61,13 @@ def main() -> None:
         if artifact_id is None:
             if args.allow_missing:
                 sys.exit(0)
+
+            status = find_artifact_status(data, args.artifact_name)
+            if status == "expired":
+                raise RuntimeError(
+                    f"Artifact expired, cannot download: {args.artifact_name} "
+                    "(re-run the source workflow to regenerate it)"
+                )
             raise RuntimeError(f"Artifact not found: {args.artifact_name}")
 
         print(artifact_id)
