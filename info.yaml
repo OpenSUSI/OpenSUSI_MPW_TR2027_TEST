@@ -26,8 +26,8 @@ aggregate:
   # SYSTEM_DIRS). Which orderId is the *current* TEG / FILL source is decided
   # here, not by the workflow: after a new TEG or FILL submission is
   # confirmed good, an admin updates the path below to point at it.
-  teg_gds:  users/OpenSUSI/2027TEG_system/GDSII_MDP.gds
-  fill_gds: users/OpenSUSI/2027FILL_system/GDSII_MDP.gds
+  teg_gds:  users/OpenSUSI/ORD-261002-WZ9ZP2-01/GDSII_MDP.gds 
+  fill_gds: 
 
 # ----------------------------
 # Logo configuration
