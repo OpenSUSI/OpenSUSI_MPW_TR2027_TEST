@@ -27,7 +27,7 @@ aggregate:
   # here, not by the workflow: after a new TEG or FILL submission is
   # confirmed good, an admin updates the path below to point at it.
   teg_gds:  users/OpenSUSI/ORD-261002-WZ9ZP2-01/GDSII_MDP.gds 
-  fill_gds: 
+  fill_gds: users/OpenSUSI/ORD-261002-EEJMYQ-01/GDSII_MDP.gds
 
 # ----------------------------
 # Logo configuration
