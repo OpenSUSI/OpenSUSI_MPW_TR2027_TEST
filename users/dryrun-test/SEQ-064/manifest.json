@@ -5,11 +5,11 @@
   "sourceRepo": "dryrun-test/fake",
   "sourceRunId": "0",
   "sourceArtifactName": "manual-test",
-  "sourceCommitSha": "67189a317b6e221abbeb7404da660c7d1319de19",
+  "sourceCommitSha": "c70077ea7cea8c7cd63bd6ef83d64accaecf43f0",
   "normalizedRepoName": "dryrun-test/fake",
   "gdsFile": "GDSII_MDP.gds",
-  "gdsSha256": "d083dd6e31a17354c72f0a2d84fc73afc8a65d25a93f6814ec9aed8bc4fa941d",
-  "gdsTopCell": "ORD_261002_WZ9ZP2_01",
+  "gdsSha256": "6bd80016a3e14f43a58d894b068ad9c150e66f2242042a6371ba1cd4375c6926",
+  "gdsTopCell": "SEQ_064",
   "gdsiiDrawingFiles": "",
   "extractedFiles": ""
 }
